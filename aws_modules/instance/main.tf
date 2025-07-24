@@ -21,7 +21,7 @@ data "aws_key_pair" "manual_key_pair" {
 resource "aws_instance" "web-test" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  subnet_id = var.public_subnet_id
+  subnet_id = var.subnet_id
   associate_public_ip_address = true
   vpc_security_group_ids = var.security_group_id
   iam_instance_profile = var.instance_profile_name

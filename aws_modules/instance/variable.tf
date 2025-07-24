@@ -1,5 +1,5 @@
-variable "public_subnet_id" {
-  description = "Subnet ID where NAT Gateway will be launched (must be public)"
+variable "subnet_id" {
+  description = "subnet ID where the EC2 instance will be launched"
   type        = string
 }
 
