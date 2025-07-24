@@ -11,7 +11,7 @@ resource "aws_lb" "app_lb" {
     enabled = true
   }
 
-  tags = var.tag
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "webapp_tg" {
@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "webapp_tg" {
     unhealthy_threshold = 2
     timeout             = 5
   }
-  tags = var.tag
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "http_listener" {
@@ -41,5 +41,5 @@ resource "aws_lb_listener" "http_listener" {
     target_group_arn = aws_lb_target_group.webapp_tg.arn
   }
 
-  tags = var.tag
+  tags = var.tags
 }

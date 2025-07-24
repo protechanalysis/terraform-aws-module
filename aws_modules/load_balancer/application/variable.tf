@@ -8,7 +8,7 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "tag" {
+variable "tags" {
   description = "A map of tags to assign to the resources."
   type        = map(string)
   default     = {}
