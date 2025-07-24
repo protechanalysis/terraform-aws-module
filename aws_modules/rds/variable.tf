@@ -71,3 +71,8 @@ variable "allocated_storage" {
   default     = 10
 }
 
+variable "multi_az" {
+  description = "Specifies whether the DB instance is a Multi-AZ deployment."
+  type        = bool
+  default     = false
+}

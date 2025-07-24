@@ -3,6 +3,7 @@ resource "aws_db_instance" "dev-rds" {
   db_name                = var.database_name
   engine                 = var.engine
   engine_version         = var.engine_version
+  multi_az               = var.multi_az
   identifier             = var.tags["Name"]
   instance_class         = var.instance_class
   username               = var.username
