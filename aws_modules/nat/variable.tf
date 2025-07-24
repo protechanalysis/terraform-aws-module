@@ -5,6 +5,11 @@ variable "name" {
 
 variable "public_subnet_id" {
   description = "Subnet ID where the NAT Gateway will be created"
-  type        = string
-  
+  type        = string  
+}
+
+variable "tag" {
+  description = "Tags to apply to the NAT Gateway and EIP"
+  type        = map(string)
+  default     = {}
 }
