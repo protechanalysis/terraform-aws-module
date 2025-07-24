@@ -1,7 +1,7 @@
 resource "aws_eip" "dev_eip" {
   domain = "vpc"
 
-  tags = var.tag
+  tags = var.tags
 }
 
 resource "aws_nat_gateway" "nat_gateway" {
