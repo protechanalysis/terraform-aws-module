@@ -6,7 +6,7 @@ resource "aws_route_table" "dev_route_table" {
     content {
       cidr_block     = var.route_cidr
       gateway_id     = var.type == "public"  ? var.gateway_id     : null
-      nat_gateway_id = var.type == "private" ? var.nat_gateway_id : null
+      nat_gateway_id = var.type == "private" ? var.nat_id : null
     }
   }
 

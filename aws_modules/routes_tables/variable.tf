@@ -38,7 +38,7 @@ variable "subnet_ids" {
   type        = map(string)
 }
 
-variable "nat_gateway_id" {
+variable "nat_id" {
   description = "ID of the NAT Gateway for private route tables"
   type        = string
   default     = null
