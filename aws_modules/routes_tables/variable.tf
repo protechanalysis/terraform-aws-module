@@ -37,3 +37,9 @@ variable "subnet_ids" {
   description = "Map of subnet names to subnet IDs"
   type        = map(string)
 }
+
+variable "nat_gateway_id" {
+  description = "ID of the NAT Gateway for private route tables"
+  type        = string
+  default     = null
+}
