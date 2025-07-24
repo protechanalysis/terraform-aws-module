@@ -28,3 +28,9 @@ variable "alb_sg_id" {
   description = "The security group ID for the Application Load Balancer."
   type        = list(string)
 }
+
+variable "path" {
+  description = "The health check path for the target group."
+  type        = string
+  default     = "/index.html"
+}

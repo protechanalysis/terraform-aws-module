@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "webapp_tg" {
   vpc_id   = var.vpc_id
   target_type = "instance"
   health_check {
-    path                = "/"
+    path                = var.path
     protocol            = "HTTP"
     interval            = 30
     healthy_threshold   = 2

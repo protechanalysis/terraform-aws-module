@@ -5,9 +5,7 @@ resource "aws_s3_bucket" "alb_logs" {
   bucket = "${var.name}-alb-access-logs"
   force_destroy = true
 
-  tags = {
-    Name = "${var.name}-alb-logs"
-  }
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_versioning" "alb_logs_versioning" {
