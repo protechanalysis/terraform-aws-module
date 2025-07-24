@@ -8,7 +8,7 @@ variable "public_subnet_id" {
   type        = string  
 }
 
-variable "tag" {
+variable "tags" {
   description = "Tags to apply to the NAT Gateway and EIP"
   type        = map(string)
   default     = {}
