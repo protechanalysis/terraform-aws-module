@@ -8,7 +8,7 @@ resource "aws_lb" "app_lb" {
   access_logs {
     bucket  = var.s3_log_bucket_id
     prefix  = "dev-lb"
-    enabled = true
+    enabled = var.enable_log
   }
 
   tags = var.tags

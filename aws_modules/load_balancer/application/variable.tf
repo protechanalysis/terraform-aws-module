@@ -22,6 +22,7 @@ variable "name" {
 variable "s3_log_bucket_id" {
   description = "The ID of the S3 bucket for storing access logs."
   type        = string
+  default     = ""
 }
 
 variable "alb_sg_id" {
@@ -33,4 +34,11 @@ variable "path" {
   description = "The health check path for the target group."
   type        = string
   default     = "/index.html"
+}
+
+variable "enable_log" {
+  description = "Enable or disable access logging for the ALB."
+  type        = bool
+  default     = false
+  
 }
