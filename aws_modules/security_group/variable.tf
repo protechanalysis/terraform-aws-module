@@ -6,24 +6,31 @@ variable "name" {
 variable "description" {
   description = "Description of the security group"
   type        = string
-  default     = "Security group managed by Terraform"
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC where the security group will be created"
+  description = "VPC ID for the security group"
   type        = string
 }
 
 variable "ingress_rules" {
-  description = "List of ingress rules"
+  description = <<EOF
+List of ingress rules. Each rule can include:
+- from_port
+- to_port
+- protocol
+- description
+- cidr_blocks (optional)
+- source_security_group_id (optional)
+EOF
   type = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-    description = string
+    from_port               = number
+    to_port                 = number
+    protocol                = string
+    description             = string
+    cidr_blocks             = optional(list(string))
+    source_security_group_id = optional(string)
   }))
-  default = []
 }
 
 variable "egress_rules" {
@@ -35,17 +42,9 @@ variable "egress_rules" {
     cidr_blocks = list(string)
     description = string
   }))
-  default = [{
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Allow all outbound traffic"
-  }]
 }
 
 variable "tags" {
-  description = "Additional tags for the security group"
+  description = "Tags to apply to the security group"
   type        = map(string)
-  default     = {}
 }

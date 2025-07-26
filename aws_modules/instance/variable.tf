@@ -44,3 +44,10 @@ variable "instance_profile_name" {
   description = "IAM instance profile name to attach to the EC2 instance"
   type        = string
 }
+
+
+variable "assign_public_ip" {
+  description = "Whether to assign a public IP address to the instance"
+  type        = bool
+  default     = false
+}
