@@ -12,7 +12,7 @@ resource "aws_security_group" "dev_sg" {
       description = ingress.value.description
 
       # Only include cidr_blocks if provided
-      cidr_blocks = length(lookup(ingress.value, "cidr_blocks", [])) > 0 ? ingress.value.cidr_blocks : null
+      cidr_blocks = lookup(ingress.value, "cidr_blocks", [])
 
       # Only include security_groups if provided
       security_groups = lookup(ingress.value, "source_security_group_id", null) != null ? [ingress.value.source_security_group_id] : null
