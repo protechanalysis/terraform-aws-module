@@ -42,3 +42,8 @@ variable "enable_log" {
   default     = false
   
 }
+
+variable "instance_ids" {
+  description = "A set of instance IDs to attach to the target group."
+  type = list(string)
+}

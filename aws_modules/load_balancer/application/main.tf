@@ -43,3 +43,10 @@ resource "aws_lb_listener" "http_listener" {
 
   tags = var.tags
 }
+
+resource "aws_lb_target_group_attachment" "attachment" {
+  for_each         = toset(var.instance_ids)
+  target_group_arn = aws_lb_target_group.webapp_tg.arn
+  target_id        = each.value
+  port             = 80
+}
