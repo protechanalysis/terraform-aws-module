@@ -1,10 +1,10 @@
 variable "vpc_id" {
-  description = "The ID of the VPC where the RDS instance will be created."
+  description = "The ID of the VPC where the alb instance will be created."
   type        = string
 }
 
 variable "subnet_ids" {
-  description = "A list of subnet IDs where the RDS instance will be created."
+  description = "A list of subnet IDs where the alb instance will be created."
   type        = list(string)
 }
 
@@ -30,7 +30,7 @@ variable "alb_sg_id" {
   type        = list(string)
 }
 
-variable "path" {
+variable "health_check_path" {
   description = "The health check path for the target group."
   type        = string
   default     = "/index.html"
@@ -45,5 +45,6 @@ variable "enable_log" {
 
 variable "instance_ids" {
   description = "A set of instance IDs to attach to the target group."
-  type = list(string)
+  type = map(string)
+  default = {}
 }

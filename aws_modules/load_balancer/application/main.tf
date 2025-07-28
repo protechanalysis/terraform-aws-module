@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "webapp_tg" {
   vpc_id   = var.vpc_id
   target_type = "instance"
   health_check {
-    path                = var.path
+    path                = var.health_check_path
     protocol            = "HTTP"
     interval            = 30
     healthy_threshold   = 2
@@ -45,7 +45,9 @@ resource "aws_lb_listener" "http_listener" {
 }
 
 resource "aws_lb_target_group_attachment" "attachment" {
-  for_each         = toset(var.instance_ids)
+  for_each = {
+    for idx, id in var.instance_ids : "instance_${idx}" => id
+  }
   target_group_arn = aws_lb_target_group.webapp_tg.arn
   target_id        = each.value
   port             = 80
