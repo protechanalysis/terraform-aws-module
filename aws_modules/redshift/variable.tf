@@ -82,9 +82,10 @@ variable "public_access" {
   default     = false
 }
 
-variable "version" {
+variable "cluster_version" {
   description = "The version of the Redshift cluster"
   type        = string
+  default     = ""
 }
 
 variable "number_of_nodes" {
