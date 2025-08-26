@@ -22,7 +22,7 @@ resource "aws_iam_role" "ec2_ssm_role" {
 }
 
 resource "aws_iam_role_policy" "ssm_policy" {
-  name = "${var.name}-ssm_parameter_access"
+  name = "${var.name}-ssm_s3_access"
   role = aws_iam_role.ec2_ssm_role.id
 
   policy = jsonencode({
@@ -33,13 +33,20 @@ resource "aws_iam_role_policy" "ssm_policy" {
         Action = [
           "ssm:GetParameter",
           "ssm:GetParameters",
-          "ssm:GetParametersByPath",
-          "s3:GetObject",
-          "s3:ListBucket",
-          "s3:PutObject",
+          "ssm:GetParametersByPath"
         ]
         Resource = [
-          "arn:aws:ssm:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:parameter/*",
+          "arn:aws:ssm:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:parameter/*"
+        ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
           "arn:aws:s3:::${var.bucket_name}",
           "arn:aws:s3:::${var.bucket_name}/*"
         ]
