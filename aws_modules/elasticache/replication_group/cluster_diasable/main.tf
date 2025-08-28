@@ -14,7 +14,7 @@ resource "aws_elasticache_replication_group" "example" {
   parameter_group_name          = var.parameter_group_name
   port                          = var.port
   num_cache_clusters            = var.num_cache_clusters             
-  automatic_failover_enabled    = var.failover      
+  automatic_failover_enabled    = var.failover
   multi_az_enabled              = var.multi_az_enabled
   subnet_group_name             = aws_elasticache_subnet_group.sg.name
   security_group_ids            = var.security_group_ids
