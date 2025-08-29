@@ -16,13 +16,13 @@ resource "aws_lb" "app_lb" {
 
 resource "aws_lb_target_group" "webapp_tg" {
   name     = "${var.name}-tg"
-  port     = 80
-  protocol = "HTTP"
+  port     = var.port
+  protocol = var.protocol
   vpc_id   = var.vpc_id
   target_type = "instance"
   health_check {
     path                = var.health_check_path
-    protocol            = "HTTP"
+    protocol            = var.protocol
     interval            = 30
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -33,8 +33,8 @@ resource "aws_lb_target_group" "webapp_tg" {
 
 resource "aws_lb_listener" "http_listener" {
   load_balancer_arn = aws_lb.app_lb.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = var.port
+  protocol          = var.protocol
 
   default_action {
     type             = "forward"
@@ -50,5 +50,5 @@ resource "aws_lb_target_group_attachment" "attachment" {
   }
   target_group_arn = aws_lb_target_group.webapp_tg.arn
   target_id        = each.value
-  port             = 80
+  port             = var.port
 }

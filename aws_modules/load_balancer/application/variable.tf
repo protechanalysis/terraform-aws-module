@@ -48,3 +48,13 @@ variable "instance_ids" {
   type = map(string)
   default = {}
 }
+
+variable "port" {
+  description = "The port on which the load balancer will listen and the target group will route traffic."
+  type        = number
+}
+
+variable "protocol" {
+  description = "The protocol for the load balancer and target group (e.g., HTTP, HTTPS)."
+  type        = string
+}
