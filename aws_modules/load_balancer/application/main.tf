@@ -16,7 +16,7 @@ resource "aws_lb" "app_lb" {
 
 resource "aws_lb_target_group" "webapp_tg" {
   name     = "${var.name}-tg"
-  port     = var.port
+  port     = var.target_port
   protocol = var.protocol
   vpc_id   = var.vpc_id
   target_type = "instance"
@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "webapp_tg" {
 
 resource "aws_lb_listener" "http_listener" {
   load_balancer_arn = aws_lb.app_lb.arn
-  port              = var.port
+  port              = var.listener_port
   protocol          = var.protocol
 
   default_action {
@@ -50,5 +50,5 @@ resource "aws_lb_target_group_attachment" "attachment" {
   }
   target_group_arn = aws_lb_target_group.webapp_tg.arn
   target_id        = each.value
-  port             = var.port
+  port             = var.target_port
 }

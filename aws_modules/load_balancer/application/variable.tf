@@ -49,12 +49,17 @@ variable "instance_ids" {
   default = {}
 }
 
-variable "port" {
-  description = "The port on which the load balancer will listen and the target group will route traffic."
+variable "target_port" {
+  description = "The port on which the load balancer target group will route traffic."
   type        = number
 }
 
 variable "protocol" {
   description = "The protocol for the load balancer and target group (e.g., HTTP, HTTPS)."
   type        = string
+}
+
+variable "listener_port" {
+  description = "The port on which the load balancer will listen."
+  type        = number
 }
