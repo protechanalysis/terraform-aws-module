@@ -63,3 +63,19 @@ variable "listener_port" {
   description = "The port on which the load balancer will listen."
   type        = number
 }
+
+variable "enable_stickiness" {
+  description = "Enable or disable stickiness for the target group."
+  type        = bool
+  default     = false
+}
+
+variable "cookie_duration" {
+  description = "The duration (in seconds) for which the stickiness cookie should be valid."
+  type        = number
+  default     = null
+  validation {
+    condition     = var.enable_stickiness == false || (var.enable_stickiness == true && var.cookie_duration != null && var.cookie_duration > 0)
+    error_message = "cookie_duration must be specified and greater than 0 when stickiness is enabled."
+  }
+}

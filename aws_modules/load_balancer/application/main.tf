@@ -20,6 +20,11 @@ resource "aws_lb_target_group" "webapp_tg" {
   protocol = var.protocol
   vpc_id   = var.vpc_id
   target_type = "instance"
+  stickiness {
+    enabled         = var.enable_stickiness
+    type            = "lb_cookie"
+    cookie_duration = var.cookie_duration
+  }
   health_check {
     path                = var.health_check_path
     protocol            = var.protocol
